@@ -11,10 +11,10 @@ MF.ui.boot(function () {
   if (!canSee) {
     app.innerHTML = h`<div class="wrap section"><div class="empty"><h3>Listing not found</h3><p>This listing may have been removed or is pending approval.</p>
       <a href="${page('browse')}" class="btn btn--primary" style="margin-top:14px">Browse All Listings</a></div></div>`;
-    document.title = 'Listing not found - ManilaFinds';
+    document.title = 'Listing not found - Muralla Tech';
     return;
   }
-  document.title = l.title + ' - ManilaFinds';
+  document.title = l.title + ' - Muralla Tech';
 
   const photos = l.photos && l.photos.length ? l.photos : ['assets/placeholder.svg'];
   const isOwn = !!user && user.id === l.seller_id;

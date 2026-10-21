@@ -39,7 +39,7 @@ MF.ui.boot(function () {
           <div class="line"><span>Delivery estimate${t.sellers > 1 ? ' (' + t.sellers + ' sellers)' : ''}</span><span>${peso(t.delivery)}</span></div>
           <div class="line total"><span>Total</span><span class="tnum">${peso(t.total)}</span></div>
           <a class="btn btn--primary btn--block btn--lg" style="margin-top:20px" href="${page('checkout')}">Proceed to checkout</a>
-          <p class="fineprint">You choose delivery or meet-up next. Pay by GCash or Maya through ManilaFinds; meet-up payments are arranged with the seller.</p>
+          <p class="fineprint">You choose delivery or meet-up next. Pay by GCash or Maya through Muralla Tech; meet-up payments are arranged with the seller.</p>
         </div></aside>
       </div></div>`;
   }

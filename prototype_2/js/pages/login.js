@@ -14,10 +14,10 @@ MF.ui.boot(function () {
     location.href = MF.root + (next || (user.role === 'admin' ? 'pages/admin.html' : 'index.html'));
   }
 
-  const DEMOS = [['Buyer', 'buyer@manilafinds.test', 'buyer123'], ['Seller', 'seller@manilafinds.test', 'seller123'], ['Admin', 'admin@manilafinds.test', 'admin123']];
+  const DEMOS = [['Buyer', 'buyer@murallatech.test', 'buyer123'], ['Seller', 'seller@murallatech.test', 'seller123'], ['Admin', 'admin@murallatech.test', 'admin123']];
 
   function draw() {
-    document.title = (mode === 'login' ? 'Log in' : 'Sign up') + ' - ManilaFinds';
+    document.title = (mode === 'login' ? 'Log in' : 'Sign up') + ' - Muralla Tech';
     app.innerHTML = h`
     <div class="auth-wrap"><div class="auth-card">
       <div class="auth-brand"><div class="sunburst"></div>

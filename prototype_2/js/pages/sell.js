@@ -11,7 +11,7 @@ MF.ui.boot(function () {
 
   function gate() {
     app.innerHTML = h`<div class="wrap section"><div class="empty" style="max-width:520px;margin:30px auto">
-      <h3>Want to sell on ManilaFinds?</h3><p>Your account is a buyer account. Upgrade to a seller account to list your electronics.</p>
+      <h3>Want to sell on Muralla Tech?</h3><p>Your account is a buyer account. Upgrade to a seller account to list your electronics.</p>
       <button type="button" class="btn btn--primary" style="margin-top:14px" data-act="upgrade">Upgrade to Seller Account</button></div></div>`;
     MF.ui.wire(app, { upgrade: () => { MF.auth.update(user.id, { role: 'seller' }); location.reload(); } });
   }

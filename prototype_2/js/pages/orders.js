@@ -31,12 +31,12 @@ MF.ui.boot(function () {
     const canCancel = digital ? ['awaiting_payment', 'payment_rejected'].includes(o.status) : o.status === 'pending';
     return h`<article class="ord-card" data-order="${o.order_number}">
       <div class="order-head"><div><b class="order-number">${o.order_number}</b><span class="order-meta">Placed ${dateTime(o.created_at)}</span></div>${MF.ui.statusPill(o.status)}</div>
-      <p class="order-meta" style="margin-bottom:10px">Seller: <a href="${page('browse')}?seller=${o.seller_id}" style="color:var(--palm)">${fullName(seller, 'ManilaFinds seller')}</a></p>
+      <p class="order-meta" style="margin-bottom:10px">Seller: <a href="${page('browse')}?seller=${o.seller_id}" style="color:var(--palm)">${fullName(seller, 'Muralla Tech seller')}</a></p>
       ${o.status === 'cancelled' ? h`<div class="notice notice--error" role="status">Cancelled by ${o.cancelled_by === 'buyer' ? 'you' : 'the seller'}${o.cancel_reason ? ': ' + o.cancel_reason : ''}. Your items were returned to stock and nothing is owed.</div>` : O.tracker(o)}
       ${O.items(o)}${O.totals(o)}
       <p class="order-meta" style="margin:12px 0 4px"><b>${o.delivery_method === 'meetup' ? 'Meet-up' : 'Standard delivery'}</b>${o.delivery_method === 'standard' ? ': ' + o.details.first_name + ' ' + o.details.last_name + ', ' + o.details.address : ''}</p>
-      ${o.status !== 'cancelled' ? h`<p class="order-meta">${digital ? methodLabel(o.payment_method) + ': ' + peso(o.total) + ' paid to ManilaFinds, which pays the seller after you receive the item.' : 'Payment is arranged directly between you and the seller.'}</p>` : ''}
-      ${digital && o.status === 'awaiting_payment' ? h`<div class="notice" role="status"><span><b>Payment needed.</b> Send ${methodLabel(o.payment_method)} payment to ManilaFinds, then submit your proof.</span><a class="btn btn--primary btn--sm" href="${page('pay')}?id=${o.id}">Pay now</a></div>` : ''}
+      ${o.status !== 'cancelled' ? h`<p class="order-meta">${digital ? methodLabel(o.payment_method) + ': ' + peso(o.total) + ' paid to Muralla Tech, which pays the seller after you receive the item.' : 'Payment is arranged directly between you and the seller.'}</p>` : ''}
+      ${digital && o.status === 'awaiting_payment' ? h`<div class="notice" role="status"><span><b>Payment needed.</b> Send ${methodLabel(o.payment_method)} payment to Muralla Tech, then submit your proof.</span><a class="btn btn--primary btn--sm" href="${page('pay')}?id=${o.id}">Pay now</a></div>` : ''}
       ${digital && o.status === 'payment_rejected' ? h`<div class="notice notice--error" role="alert"><span><b>Payment not approved</b>${proofs[0] && proofs[0].reject_reason ? ': ' + proofs[0].reject_reason : ''}. ${left > 0 ? 'You can send corrected proof (' + left + ' left).' : 'No attempts left; please contact support.'}</span>${left > 0 ? h`<a class="btn btn--primary btn--sm" href="${page('pay')}?id=${o.id}">Send corrected proof</a>` : ''}</div>` : ''}
       ${digital && o.status === 'payment_submitted' ? h`<div class="notice" role="status"><span>Your proof of payment is being checked. We will notify you once it is approved.</span><a class="btn btn--ghost btn--sm" href="${page('pay')}?id=${o.id}">View</a></div>` : ''}
       ${digital && o.status === 'payment_confirmed' ? (o.handed_over_at ? h`
@@ -70,13 +70,13 @@ MF.ui.boot(function () {
       ${o.status === 'cancelled' ? h`<div class="notice notice--error" role="status">Cancelled by ${o.cancelled_by === 'seller' ? 'you' : 'the buyer'}${o.cancel_reason ? ': ' + o.cancel_reason : ''}.</div>` : O.tracker(o)}
       ${O.items(o)}${O.totals(o)}
       ${digital ? h`
-        <p class="order-meta" style="margin:10px 0 6px">Payment: the buyer pays ManilaFinds by ${methodLabel(o.payment_method)}. ManilaFinds pays you after the buyer confirms they received the item.</p>
+        <p class="order-meta" style="margin:10px 0 6px">Payment: the buyer pays Muralla Tech by ${methodLabel(o.payment_method)}. Muralla Tech pays you after the buyer confirms they received the item.</p>
         ${o.status === 'payment_confirmed' && !o.handed_over_at ? h`<div class="notice notice--ok" role="status"><span><b>Paid. Hand over the item to the buyer</b>, then mark it as handed over.</span><button type="button" class="btn btn--sm btn--primary" data-act="handover" data-id="${o.id}">Mark as handed over</button></div>` : ''}
         ${o.status === 'payment_confirmed' && o.handed_over_at ? h`<div class="notice" role="status"><span>Handed over ${dateTime(o.handed_over_at)}. Waiting for the buyer to confirm receipt; then your payout is queued.</span></div>` : ''}
         ${['awaiting_payment', 'payment_submitted', 'payment_rejected'].includes(o.status) ? h`<div class="notice" role="status"><span>Waiting for the buyer's payment to be confirmed. Do not hand over the item yet.</span></div>` : ''}
         ${o.status !== 'cancelled' ? O.payoutBox(o, 'seller') : ''}
-        ${o.status === 'completed' && o.payment.payout_status === 'pending_release' && !user.payout_account ? h`<div class="notice notice--error" role="alert"><span>Add a payout account in <a href="${page('orders')}?tab=settings" style="text-decoration:underline">Settings</a> so ManilaFinds can send your payout.</span></div>` : ''}`
-      : h`<p class="order-meta" style="margin:10px 0 0">Payment: arranged directly between you and the buyer at the meet-up. Nothing is paid through ManilaFinds.</p>
+        ${o.status === 'completed' && o.payment.payout_status === 'pending_release' && !user.payout_account ? h`<div class="notice notice--error" role="alert"><span>Add a payout account in <a href="${page('orders')}?tab=settings" style="text-decoration:underline">Settings</a> so Muralla Tech can send your payout.</span></div>` : ''}`
+      : h`<p class="order-meta" style="margin:10px 0 0">Payment: arranged directly between you and the buyer at the meet-up. Nothing is paid through Muralla Tech.</p>
           ${o.status === 'pending' ? h`<div class="ord-actions" style="margin-top:14px;margin-bottom:0"><button type="button" class="btn btn--sm btn--primary" data-act="confirm-meetup" data-id="${o.id}">Confirm order</button></div>` : ''}
           ${o.status === 'confirmed' ? h`<div class="ord-actions" style="margin-top:14px;margin-bottom:0"><button type="button" class="btn btn--sm btn--primary" data-act="handover" data-id="${o.id}">Mark as handed over (completed)</button></div>` : ''}`}
       ${cancelControls(o, canCancel)}
@@ -145,7 +145,7 @@ MF.ui.boot(function () {
           <div class="field"><label for="st-last">Last name</label><input id="st-last" name="last_name" value="${user.last_name}"></div></div>
         <button type="submit" class="btn btn--primary">Save profile</button></form>
       ${staff ? h`<form class="co-panel" data-form="payout" style="max-width:560px;margin-top:20px"><h2>Payout account</h2>
-        <p class="order-meta" style="margin-bottom:14px">For orders paid by GCash or Maya, ManilaFinds keeps a 5% platform fee and sends you the rest here after the buyer confirms receipt.${user.payout_account ? ' Currently: ' + methodLabel(pa.method) + ' ' + pa.account_number + ' (' + pa.account_name + ').' : ' No account saved yet.'}</p>
+        <p class="order-meta" style="margin-bottom:14px">For orders paid by GCash or Maya, Muralla Tech keeps a 5% platform fee and sends you the rest here after the buyer confirms receipt.${user.payout_account ? ' Currently: ' + methodLabel(pa.method) + ' ' + pa.account_number + ' (' + pa.account_name + ').' : ' No account saved yet.'}</p>
         <div class="field-row"><div class="field"><label for="po-method">Send payouts to</label><select id="po-method" name="method"><option value="gcash"${pa.method === 'gcash' ? ' selected' : ''}>GCash</option><option value="maya"${pa.method === 'maya' ? ' selected' : ''}>Maya</option></select></div>
           <div class="field"><label for="po-number">Account number</label><input id="po-number" name="number" inputmode="numeric" maxlength="20" placeholder="0917 123 4567" value="${pa.account_number || ''}"></div></div>
         <div class="field"><label for="po-name">Account name</label><input id="po-name" name="name" maxlength="80" placeholder="As registered in the app" value="${pa.account_name || ''}"></div>
@@ -158,7 +158,7 @@ MF.ui.boot(function () {
     Object.assign(user, fresh);
     const body = { orders: ordersTab, 'seller-orders': sellerOrdersTab, listings: listingsTab, saved: savedTab, notifications: notificationsTab, settings: settingsTab }[tab];
     const todo = staff ? MF.pay.sellerTodo(user.id) : 0;
-    document.title = TABS.find((t) => t[0] === tab)[1] + ' - ManilaFinds';
+    document.title = TABS.find((t) => t[0] === tab)[1] + ' - Muralla Tech';
     app.innerHTML = h`<div class="wrap section"><div class="account-layout">
       <aside class="acct-side"><div class="acct-user"><div class="av">${user.first_name[0].toUpperCase()}</div><div><b>${fullName(user)}</b><span>${user.role}</span></div></div>
         <nav class="acct-nav" aria-label="Account">${TABS.map(([k, label, ic]) => h`<a href="?tab=${k}" class="${k === tab ? 'on' : ''}"${k === tab ? ' aria-current="page"' : ''}>${icon(ic, 16)}${label}${k === 'seller-orders' && todo ? h`<span class="count-badge">${todo}</span>` : ''}${k === 'notifications' && MF.pay.unread(user.id) ? h`<span class="count-badge">${MF.pay.unread(user.id)}</span>` : ''}</a>`)}</nav></aside>

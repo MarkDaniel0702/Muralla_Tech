@@ -1,6 +1,6 @@
 /* Admin dashboard (admin accounts only; every action is checked again in MF.listings / MF.pay):
    Overview, Listings (moderation), Payment Confirmation (approve / reject proofs), Payouts (tracking + release),
-   Payment details (ManilaFinds' GCash / Maya accounts), Activity log. */
+   Payment details (Muralla Tech' GCash / Maya accounts), Activity log. */
 MF.ui.boot(function () {
   const { h, icon, peso, url, page, dateTime, fullName, methodLabel } = MF.ui;
   const O = MF.orderui;
@@ -77,7 +77,7 @@ MF.ui.boot(function () {
     const chips = [['pending', 'Pending'], ['approved', 'Approved'], ['rejected', 'Rejected']];
     const pill = { pending: ['Pending', 'pill--warn'], approved: ['Approved', 'pill--ok'], rejected: ['Rejected', 'pill--danger'] };
     return h`<h2 style="margin-bottom:6px">Payment Confirmation</h2>
-      <p class="order-meta" style="margin-bottom:14px">Check every GCash / Maya payment against ManilaFinds' own account (demo: there is no real account, so just compare the details). Approve only when the money arrived and the sender, reference number and amount all match. Reject when the amount, sender or reference number is wrong, or the request looks fake.</p>
+      <p class="order-meta" style="margin-bottom:14px">Check every GCash / Maya payment against Muralla Tech' own account (demo: there is no real account, so just compare the details). Approve only when the money arrived and the sender, reference number and amount all match. Reject when the amount, sender or reference number is wrong, or the request looks fake.</p>
       <div class="order-filters" role="group" aria-label="Filter payments">${chips.map(([k, label]) => h`<button type="button" class="btn btn--sm ${f === k ? 'btn--primary' : 'btn--ghost'}" data-act="pf" data-k="${k}" aria-pressed="${String(f === k)}">${label} (${count(rows, (x) => x.p.status === k)})</button>`)}</div>
       ${shown.length ? shown.map(({ p, o }) => {
         const match = Math.round(p.amount * 100) === Math.round(o.total * 100);
@@ -104,7 +104,7 @@ MF.ui.boot(function () {
               <textarea id="rp-${p.id}" name="reason" rows="2" maxlength="300" placeholder="e.g. No payment with this reference number arrived"></textarea>
               <div class="ord-actions" style="margin-bottom:0"><button type="submit" class="btn btn--sm btn--primary">Reject payment</button><button type="button" class="btn btn--sm btn--ghost" data-act="cancel-ui">Back</button></div></form>` : h`
             <div class="review-actions">
-              <label class="review-check"><input type="checkbox" data-check="${p.id}"> I checked ManilaFinds' ${methodLabel(p.method)} account: ${peso(p.amount)} arrived from ${p.sender_name} with reference ${p.reference}.</label>
+              <label class="review-check"><input type="checkbox" data-check="${p.id}"> I checked Muralla Tech' ${methodLabel(p.method)} account: ${peso(p.amount)} arrived from ${p.sender_name} with reference ${p.reference}.</label>
               <div class="ord-actions" style="margin-bottom:0"><button type="button" class="btn btn--sm btn--primary" data-act="approve-proof" data-id="${p.id}" data-approve disabled ${match ? '' : 'data-nomatch'}>Approve</button>
                 <button type="button" class="btn btn--sm btn--ghost" data-act="reject-proof-ask" data-id="${p.id}">Reject</button></div>
             </div>`) : ''}
@@ -149,11 +149,11 @@ MF.ui.boot(function () {
   function settingsTab() {
     const s = MF.db.settings();
     return h`<h2 style="margin-bottom:6px">Payment details</h2>
-      <p class="order-meta" style="margin-bottom:16px">Buyers who choose GCash or Maya pay into these ManilaFinds accounts and send proof; you approve each one in Payment Confirmation. Demo only: use the placeholder numbers, never real accounts. Switch a method off to hide it at checkout. Platform fee: ${Math.round(s.fee_rate * 100)}% of the item price on digital payments (set in data/settings.json).</p>
+      <p class="order-meta" style="margin-bottom:16px">Buyers who choose GCash or Maya pay into these Muralla Tech accounts and send proof; you approve each one in Payment Confirmation. Demo only: use the placeholder numbers, never real accounts. Switch a method off to hide it at checkout. Platform fee: ${Math.round(s.fee_rate * 100)}% of the item price on digital payments (set in data/settings.json).</p>
       <div class="pay-settings">${['gcash', 'maya'].map((m) => {
         const a = s.platform_accounts[m];
         return h`<form class="co-panel" data-form="account" data-m="${m}" novalidate><h2>${methodLabel(m)}</h2>
-          <div class="field"><label for="pa-name-${m}">Account name</label><input id="pa-name-${m}" name="name" maxlength="80" value="${a.account_name}" placeholder="ManilaFinds Demo"></div>
+          <div class="field"><label for="pa-name-${m}">Account name</label><input id="pa-name-${m}" name="name" maxlength="80" value="${a.account_name}" placeholder="Muralla Tech Demo"></div>
           <div class="field"><label for="pa-number-${m}">${methodLabel(m)} number</label><input id="pa-number-${m}" name="number" inputmode="numeric" maxlength="20" value="${a.account_number}" placeholder="0917 000 0001"></div>
           <div class="field"><label for="pa-qr-${m}">QR code (optional)</label><input id="pa-qr-${m}" type="file" accept="image/*" data-qr="${m}">
             ${a.qr ? h`<div class="pay-settings-qr"><img src="${a.qr}" alt="${methodLabel(m)} QR code"><button type="button" class="btn btn--ghost btn--sm" data-act="rm-qr" data-m="${m}">Remove</button></div>` : ''}</div>
@@ -177,7 +177,7 @@ MF.ui.boot(function () {
     const pendingL = count(MF.listings.all(), (l) => l.status === 'pending');
     const badge = { listings: pendingL, payments: pending, payouts: toRelease };
     const body = { overview, listings, payments, payouts, settings: settingsTab, log }[ui.tab];
-    document.title = 'Admin - ManilaFinds';
+    document.title = 'Admin - Muralla Tech';
     app.innerHTML = h`<div class="wrap section">
       <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap"><h1 style="margin:0;font-size:1.85rem">Admin Dashboard</h1>
         <span style="background:var(--mango);color:#1a1208;font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:999px;letter-spacing:.5px">ADMIN CONTROL</span></div>

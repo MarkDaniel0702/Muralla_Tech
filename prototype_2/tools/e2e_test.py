@@ -12,8 +12,8 @@ from playwright.sync_api import sync_playwright, expect
 
 BASE = (sys.argv[1] if len(sys.argv) > 1 else "http://127.0.0.1:8765/").rstrip("/") + "/"
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-DEMO = {"buyer": ("buyer@manilafinds.test", "buyer123"), "seller": ("seller@manilafinds.test", "seller123"),
-        "seller2": ("seller2@manilafinds.test", "seller123"), "admin": ("admin@manilafinds.test", "admin123")}
+DEMO = {"buyer": ("buyer@murallatech.test", "buyer123"), "seller": ("seller@murallatech.test", "seller123"),
+        "seller2": ("seller2@murallatech.test", "seller123"), "admin": ("admin@murallatech.test", "admin123")}
 errors, passed = [], []
 
 
@@ -326,7 +326,7 @@ with sync_playwright() as p:
     expect(pg.locator(".pay-actions")).to_have_count(0)
     pg.goto(BASE + "pages/orders.html?tab=orders")
     expect(card(pg, C)).to_contain_text("Awaiting seller")
-    expect(card(pg, C)).not_to_contain_text("ManilaFinds, which pays the seller")
+    expect(card(pg, C)).not_to_contain_text("Muralla Tech, which pays the seller")
     expect(card(pg, C).locator("a[href*='pay.html']")).to_have_count(0)
     logout(pg)
     login(pg, "seller")

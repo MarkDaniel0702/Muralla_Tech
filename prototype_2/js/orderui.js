@@ -38,13 +38,13 @@
     const paid = p.amount_paid != null;
     return h`<div class="payout-box">
       ${paid ? h`
-        <div class="line"><span>Buyer paid ManilaFinds</span><span>${peso(p.amount_paid)}</span></div>
+        <div class="line"><span>Buyer paid Muralla Tech</span><span>${peso(p.amount_paid)}</span></div>
         <div class="line"><span>Item price</span><span>${peso(o.subtotal)}</span></div>
         <div class="line"><span>Platform fee (${Math.round(p.fee_rate * 100)}% of the item price)</span><span>−${peso(p.platform_fee)}</span></div>
         <div class="line"><span>${who === 'admin' ? 'Seller payout' : 'Your payout'} (item price − fee)</span><b>${peso(p.seller_payout)}</b></div>
         ${o.delivery_fee ? h`<div class="line"><span>Delivery fee (passed on to the seller)</span><span>+${peso(o.delivery_fee)}</span></div>` : ''}
         <div class="line total"><span>${who === 'admin' ? 'Send to seller' : 'You receive'}</span><span>${peso(MF.pay.payoutTransfer(o))}</span></div>` : h`
-        <div class="line"><span>Buyer pays ManilaFinds</span><span>${peso(p.amount_due)}</span></div>
+        <div class="line"><span>Buyer pays Muralla Tech</span><span>${peso(p.amount_due)}</span></div>
         <div class="line"><span>Platform fee (${Math.round(p.fee_rate * 100)}%) will be</span><span>${peso(p.platform_fee)}</span></div>`}
       <div class="line"><span>Payout status</span>${MF.ui.payoutPill(p.payout_status)}</div>
       ${p.payout_status === 'released' ? h`<div class="order-meta">Sent ${dateTime(p.released_at)} · reference <code>${p.payout_reference}</code></div>` : ''}

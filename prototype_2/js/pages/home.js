@@ -1,26 +1,30 @@
-/* Home: hero with search + carousel of the newest listings, Shop by Category (Electronics only), How it works. */
+/* Home: hero with search + carousel of the newest listings, stats, Newest devices (tabbed), Shop by Category (Electronics only), How it works, sell CTA. */
 MF.ui.boot(function () {
-  const { h, icon, peso, url, page, raw } = MF.ui;
+  const { h, icon, peso, url, page } = MF.ui;
   const approved = MF.listings.approved();
   const newest = approved.filter((l) => l.photos && l.photos[0]).sort((a, b) => b.created_at.localeCompare(a.created_at)).slice(0, 10);
 
+  const sellers = new Set(approved.map((l) => l.seller_id)).size;
+  const TABS = [['', 'All'], ['preloved', 'Preloved'], ['surplus', 'Surplus']];
+  const byNewest = (type) => approved.filter((l) => !type || l.type === type).sort((a, b) => b.created_at.localeCompare(a.created_at)).slice(0, 12);
+
   document.getElementById('app').innerHTML = h`
   <section class="hero" aria-labelledby="hero-title">
-    <div class="sunburst"></div>
     <div class="wrap hero-inner">
       <div>
-        <h1 id="hero-title"><span class="g">Palengke</span> meets <span class="o">premium</span>.</h1>
+        <p class="eyebrow">Tech &amp; electronics marketplace</p>
+        <h1 id="hero-title">Premium tech. <span class="g">Preloved</span> prices.</h1>
         <p class="lead">Discover preloved gadgets, surplus chargers and certified-fresh electronics from sellers all over Metro Manila.</p>
         <form class="searchbar" role="search" data-hero-search>
           <input type="search" name="q" aria-label="Search electronics" placeholder="What are you looking for?">
           <button type="submit" class="btn btn--primary" style="padding:.6rem 1.1rem">Search</button>
         </form>
-        <div class="hero-chips">
-          ${['iPhone', 'AirPods', 'Power bank', 'Nintendo'].map((q) => h`<a href="${page('browse')}?q=${encodeURIComponent(q)}" class="btn btn--ghost" style="padding:.4rem .85rem;font-size:.8rem;border-radius:999px;background:var(--card)">${q}</a>`)}
+        <div class="hero-cta">
+          <a class="btn btn--primary" href="${page('browse')}">Shop now</a>
+          <a class="btn btn--outline-light" href="#how">How it works</a>
         </div>
-        <div class="hero-stats">
-          <div><b data-stat="total">${approved.length}</b><span>Items Listed</span></div>
-          <div><b>100%</b><span>Metro Manila</span></div>
+        <div class="hero-chips">
+          ${['iPhone', 'AirPods', 'Power bank', 'Nintendo'].map((q) => h`<a href="${page('browse')}?q=${encodeURIComponent(q)}" class="chip-link">${q}</a>`)}
         </div>
       </div>
       <div class="hero-collage">
@@ -28,6 +32,21 @@ MF.ui.boot(function () {
         <div class="float-tag"><div class="dot"></div> Safe meetup spots</div>
       </div>
     </div>
+  </section>
+
+  <section class="wrap stats-row" aria-label="Marketplace at a glance">
+    <div class="stat stat--dark"><b data-stat="total">${approved.length}</b><span>Items Listed</span></div>
+    <div class="stat stat--lime"><b>${sellers}</b><span>Active sellers</span></div>
+    <div class="stat stat--dark"><b>100%</b><span>Metro Manila</span></div>
+  </section>
+
+  <section class="wrap section" aria-labelledby="new-title">
+    <div class="section-head"><h2 id="new-title">Newest devices</h2>
+      <a href="${page('browse')}" class="link">See all ${icon('arrow', 16)}</a></div>
+    <div class="pill-tabs" role="group" aria-label="Filter newest devices">
+      ${TABS.map(([v, label], i) => h`<button type="button" class="pill-tab" data-tab="${v}" aria-pressed="${String(i === 0)}">${label}</button>`)}
+    </div>
+    <div class="scroller" data-newest></div>
   </section>
 
   <section class="wrap section" aria-labelledby="cat-title">
@@ -46,10 +65,30 @@ MF.ui.boot(function () {
     <div class="section-head"><h2>How it works</h2></div>
     <div class="steps">
       <div class="step"><div class="n">01</div><h3>Find it</h3><p>Search preloved and surplus electronics and filter by condition, brand and price. Save the ones you like.</p></div>
-      <div class="step"><div class="n">02</div><h3>Pay safely</h3><p>Pay ManilaFinds by GCash or Maya and send your proof of payment. We check it before the seller hands anything over.</p></div>
+      <div class="step"><div class="n">02</div><h3>Pay safely</h3><p>Pay Muralla Tech by GCash or Maya and send your proof of payment. We check it before the seller hands anything over.</p></div>
       <div class="step"><div class="n">03</div><h3>Receive it</h3><p>Confirm when the item arrives and the seller gets paid. Prefer to meet up? Pay the seller directly at a safe spot.</p></div>
     </div>
+  </section>
+
+  <section class="wrap section">
+    <div class="sell-band">
+      <div><h2>Got gadgets to sell?</h2><p>List an item in minutes. We review it, you hand it over, and you get paid.</p></div>
+      <a class="btn btn--primary btn--lg" href="${page('sell')}">${icon('plus', 16)} List an item</a>
+    </div>
   </section>`;
+
+  // ---- Newest devices: tabs swap the row of cards ----
+  const row = document.querySelector('[data-newest]');
+  const drawRow = (type) => {
+    const list = byNewest(type);
+    row.innerHTML = list.length ? h`${list.map(MF.card.render)}` : h`<div class="empty" style="flex:1;padding:30px 10px">Nothing here yet.</div>`;
+    MF.card.initAll(row);
+  };
+  document.querySelectorAll('[data-tab]').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-tab]').forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+    drawRow(b.dataset.tab);
+  }));
+  drawRow('');
 
   document.querySelector('[data-hero-search]').addEventListener('submit', (e) => {
     e.preventDefault();

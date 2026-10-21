@@ -1,6 +1,6 @@
-# ManilaFinds prototype 2 (Electronics only)
+# Muralla Tech prototype 2 (Electronics only)
 
-A standalone copy of the ManilaFinds storefront rebuilt with plain **HTML5, CSS3 and vanilla JavaScript**: no framework, no build step, no install, no backend. It shows the Electronics category only and includes the buyer, seller and admin flows and a **mock** GCash / Maya payment module. The original app is untouched.
+A standalone copy of the Muralla Tech storefront rebuilt with plain **HTML5, CSS3 and vanilla JavaScript**: no framework, no build step, no install, no backend. It shows the Electronics category only and includes the buyer, seller and admin flows and a **mock** GCash / Maya payment module. The original app is untouched.
 
 ## Run it
 
@@ -15,10 +15,10 @@ All data lives in your browser's `localStorage` (keys start with `mf2_`). Use **
 
 | Role | Email | Password | Notes |
 |---|---|---|---|
-| Buyer | `buyer@manilafinds.test` | `buyer123` | |
-| Seller | `seller@manilafinds.test` | `seller123` | Rico, owns the phones, tablets, watches (16 listings); has a GCash payout account |
-| Seller 2 | `seller2@manilafinds.test` | `seller123` | Lena, owns chargers, power banks, speaker, camera, consoles (9 listings); **no payout account** (so you can see the "add a payout account" path). A second seller exists so a cart with two sellers makes two orders |
-| Admin | `admin@manilafinds.test` | `admin123` | |
+| Buyer | `buyer@murallatech.test` | `buyer123` | |
+| Seller | `seller@murallatech.test` | `seller123` | Rico, owns the phones, tablets, watches (16 listings); has a GCash payout account |
+| Seller 2 | `seller2@murallatech.test` | `seller123` | Lena, owns chargers, power banks, speaker, camera, consoles (9 listings); **no payout account** (so you can see the "add a payout account" path). A second seller exists so a cart with two sellers makes two orders |
+| Admin | `admin@murallatech.test` | `admin123` | |
 
 The login page can fill these in with one click. Sign Up creates new buyer or seller accounts (admin cannot be self-selected).
 
@@ -28,11 +28,11 @@ The login page can fill these in with one click. Sign Up creates new buyer or se
 
 ## How each flow works
 
-**Buyer.** Browse and search, view photos, save favorites, add to cart. Checkout: choose *Standard delivery* (₱80 per seller) or *Meet-up* (free), enter details, choose GCash or Maya (standard delivery only), place the order. One order is created per seller. Then on **Pay**: ManilaFinds' own GCash/Maya details and the exact amount are shown; the buyer submits the proof of payment. In **My Orders** the buyer tracks the status and clicks *I received the item* once the seller has handed it over. Orders can be cancelled only before any money is held.
+**Buyer.** Browse and search, view photos, save favorites, add to cart. Checkout: choose *Standard delivery* (₱80 per seller) or *Meet-up* (free), enter details, choose GCash or Maya (standard delivery only), place the order. One order is created per seller. Then on **Pay**: Muralla Tech' own GCash/Maya details and the exact amount are shown; the buyer submits the proof of payment. In **My Orders** the buyer tracks the status and clicks *I received the item* once the seller has handed it over. Orders can be cancelled only before any money is held.
 
 **Seller.** *List an item* with up to 5 photos and required fields (title, brand, condition, size/dimensions, material/color, price, description). The listing waits for admin review. *My Listings* edits price/stock or deletes. *Incoming Orders*: for a paid digital order, hand over the item and click *Mark as handed over*; for a meet-up order, *Confirm order* then *Mark as handed over (completed)*. Each digital order shows the fee and payout breakdown and the payout status. A payout account is added under Settings.
 
-**Admin.** Tabs: *Overview*; *Listings* (approve, reject with a reason, delete); **Payment Confirmation** (approve or reject proofs); *Payouts* (tracking and release); *Payment details* (ManilaFinds' GCash/Maya account name, number, optional QR, on/off); *Activity log*. An admin who lists an item gets "Published" at once. Buyers and sellers who open `admin.html` get "Access denied", signed-out visitors are asked to log in.
+**Admin.** Tabs: *Overview*; *Listings* (approve, reject with a reason, delete); **Payment Confirmation** (approve or reject proofs); *Payouts* (tracking and release); *Payment details* (Muralla Tech' GCash/Maya account name, number, optional QR, on/off); *Activity log*. An admin who lists an item gets "Published" at once. Buyers and sellers who open `admin.html` get "Access denied", signed-out visitors are asked to log in.
 
 ## Payment module (mock: no real payments, no real keys)
 

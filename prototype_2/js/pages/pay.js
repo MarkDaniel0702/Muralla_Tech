@@ -1,4 +1,4 @@
-/* Pay page (buyer): shows ManilaFinds' GCash / Maya details and the exact amount, then takes the proof of payment.
+/* Pay page (buyer): shows Muralla Tech' GCash / Maya details and the exact amount, then takes the proof of payment.
    The amount, reference rules and attempt limit are checked again in MF.pay.submitProof. */
 MF.ui.boot(function () {
   const { h, peso, url, page, methodLabel, dateTime } = MF.ui;
@@ -22,7 +22,7 @@ MF.ui.boot(function () {
         <a class="btn btn--primary" style="margin-top:14px" href="${page('orders')}?tab=orders">My orders</a></div></div>`;
       return;
     }
-    document.title = 'Pay ' + o.order_number + ' - ManilaFinds';
+    document.title = 'Pay ' + o.order_number + ' - Muralla Tech';
     const proofs = MF.pay.proofsOf(o.id).sort((a, b) => b.attempt - a.attempt);
     const left = settings.max_proof_attempts - proofs.length;
     const latest = proofs[0];
@@ -34,7 +34,7 @@ MF.ui.boot(function () {
       <div class="breadcrumb"><a href="${page('orders')}?tab=orders">My Orders</a><span class="sep">/</span><span>${o.order_number}</span></div>
       <div class="pay-head"><h1>Pay for order ${o.order_number}</h1>${MF.ui.statusPill(o.status)}</div>
       ${o.status === 'payment_submitted' ? MF.ui.notice('ok', h`<b>Proof received.</b> We are checking our ${methodLabel(latest && latest.method)} account. You will get a notification once it is approved.`) : ''}
-      ${o.status === 'payment_rejected' && latest ? MF.ui.notice('error', h`<b>Your last proof was not approved:</b> ${latest.reject_reason}. ${left > 0 ? 'Please check the details and send corrected proof (' + left + ' attempt' + (left === 1 ? '' : 's') + ' left).' : 'No attempts are left. Please contact ManilaFinds support.'}`) : ''}
+      ${o.status === 'payment_rejected' && latest ? MF.ui.notice('error', h`<b>Your last proof was not approved:</b> ${latest.reject_reason}. ${left > 0 ? 'Please check the details and send corrected proof (' + left + ' attempt' + (left === 1 ? '' : 's') + ' left).' : 'No attempts are left. Please contact Muralla Tech support.'}`) : ''}
       ${o.status === 'payment_confirmed' ? MF.ui.notice('ok', h`<b>Payment approved.</b> ${o.handed_over_at ? 'The seller handed over your item.' : 'The seller will hand over your item.'} Confirm in <a href="${page('orders')}?tab=orders" style="text-decoration:underline">My Orders</a> once you have it.`) : ''}
       ${o.status === 'completed' ? MF.ui.notice('ok', 'Paid and received. Thank you!') : ''}
       ${o.status === 'cancelled' ? MF.ui.notice('error', 'This order was cancelled, so there is nothing to pay.') : ''}
@@ -42,11 +42,11 @@ MF.ui.boot(function () {
         <div>
           ${canSubmit ? h`
           <section class="co-panel pay-details" aria-labelledby="pay-1">
-            <h2 id="pay-1">1. Send ${peso(o.total)} to ManilaFinds</h2>
-            ${!accounts.length ? MF.ui.notice('error', 'Online payments are not available right now. Please try again later or contact ManilaFinds support.') : h`
+            <h2 id="pay-1">1. Send ${peso(o.total)} to Muralla Tech</h2>
+            ${!accounts.length ? MF.ui.notice('error', 'Online payments are not available right now. Please try again later or contact Muralla Tech support.') : h`
               ${accounts.length > 1 ? h`<div class="segmented" role="radiogroup" aria-label="Pay with" style="margin-bottom:14px">${accounts.map((m) => h`<button type="button" role="radio" aria-checked="${String(chosen === m)}" class="${chosen === m ? 'on' : ''}" data-act="method" data-m="${m}">${methodLabel(m)}</button>`)}</div>` : ''}
               <div class="pay-account">
-                ${acct.qr ? h`<img class="pay-qr" src="${acct.qr}" alt="ManilaFinds ${methodLabel(chosen)} QR code">` : ''}
+                ${acct.qr ? h`<img class="pay-qr" src="${acct.qr}" alt="Muralla Tech ${methodLabel(chosen)} QR code">` : ''}
                 <dl class="pay-facts">
                   <div><dt>${methodLabel(chosen)} account name</dt><dd><b>${acct.account_name}</b></dd></div>
                   <div><dt>${methodLabel(chosen)} number</dt><dd><b class="tnum">${fmtNumber(acct.account_number)}</b> <button type="button" class="btn btn--ghost btn--sm" data-act="copy" data-n="${acct.account_number}">Copy</button></dd></div>
@@ -85,7 +85,7 @@ MF.ui.boot(function () {
           <div class="line" style="margin-top:14px"><span>Subtotal</span><span>${peso(o.subtotal)}</span></div>
           <div class="line"><span>Delivery</span><span>${o.delivery_fee ? peso(o.delivery_fee) : 'Free'}</span></div>
           <div class="line total"><span>Amount to pay</span><span class="tnum">${peso(o.total)}</span></div>
-          <p class="fineprint">ManilaFinds holds your payment and pays the seller after you confirm you received the item.</p></div></aside>
+          <p class="fineprint">Muralla Tech holds your payment and pays the seller after you confirm you received the item.</p></div></aside>
       </div></div>`;
   }
 

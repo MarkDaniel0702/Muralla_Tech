@@ -15,7 +15,7 @@
     return '₱' + v.toLocaleString('en-PH', { minimumFractionDigits: Number.isInteger(v) ? 0 : 2, maximumFractionDigits: 2 });
   };
   const dateTime = (iso) => (iso ? new Date(iso).toLocaleString('en-PH', { dateStyle: 'medium', timeStyle: 'short' }) : '-');
-  const fullName = (u, fallback) => ((u && (u.first_name + ' ' + u.last_name).trim()) || fallback || 'ManilaFinds user');
+  const fullName = (u, fallback) => ((u && (u.first_name + ' ' + u.last_name).trim()) || fallback || 'Muralla Tech user');
   const methodLabel = (m) => ({ gcash: 'GCash', maya: 'Maya', meetup: 'Meet-up (arranged directly)' }[m] || m);
   const round2 = (n) => Math.round(n * 100) / 100;
 
@@ -56,6 +56,7 @@
     spec: '<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>',
     arrow: '<path d="M5 12h14M12 5l7 7-7 7"/>',
     chip: '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',
+    reset: '<path d="M1 4v6h6"/><path d="M3.5 15a9 9 0 1 0 2.1-9.4L1 10"/>',
   };
   const icon = (name, size) => raw('<svg viewBox="0 0 24 24" width="' + (size || 20) + '" height="' + (size || 20) + '" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + IC[name] + '</svg>');
 
@@ -145,7 +146,7 @@
     <header class="site-header">
       <div class="wrap header-inner">
         <button type="button" class="icon-btn hamburger" aria-label="Menu" aria-expanded="false" data-nav-toggle>${icon('menu')}</button>
-        <a class="brand" href="${page('index')}"><img src="${root}assets/icon.png" alt="" width="38" height="38"><span class="brand-word"><span class="m">Manila</span><span class="f">Finds</span></span><span class="visually-hidden"> home</span></a>
+        <a class="brand" href="${page('index')}"><img src="${root}assets/icon.png" alt="" width="35" height="40"><span class="brand-word"><span class="m">Muralla</span> <span class="f">Tech</span></span><span class="visually-hidden"> home</span></a>
         <nav class="nav-links" aria-label="Main" data-navlinks>
           <a href="${page('browse')}">Browse</a>
           <a href="${page('browse')}?type=surplus">Surplus deals</a>
@@ -208,16 +209,17 @@
     document.getElementById('mf-footer').innerHTML = h`
     <footer class="site-footer">
       <div class="wrap footer-grid footer-grid--lean">
-        <div class="footer-brand"><img src="${root}assets/logo.png" alt="ManilaFinds" style="width:150px;margin-bottom:14px">
-          <p>Metro Manila&rsquo;s marketplace for preloved gadgets and surplus electronics. Buy, sell, meet up, or ship - all in one place.</p></div>
+        <div class="footer-brand"><img class="footer-logo" src="${root}assets/logo.png" alt="Muralla Tech" width="150" height="160">
+          <p>Metro Manila&rsquo;s tech &amp; electronics marketplace for preloved gadgets and surplus deals. Buy, sell, meet up, or ship - all in one place.</p></div>
         <div class="footer-col"><h4>Shop</h4><a href="${page('browse')}">Browse all</a><a href="${page('browse')}?type=surplus">Surplus deals</a><a href="${page('browse')}?type=preloved">Preloved finds</a></div>
         <div class="footer-col"><h4>Sell</h4><a href="${page('sell')}">List an item</a><a href="${page('index')}#how">How it works</a><a href="${page('orders')}?tab=listings">My listings</a></div>
       </div>
       <div class="wrap footer-bottom">
-        <span>&copy; 2026 ManilaFinds &middot; prototype 2 (demo, mock payments only) &middot; <button type="button" class="linkbtn" data-reset-demo>Reset demo data</button></span>
+        <span>&copy; 2026 Muralla Tech &middot; prototype 2 (demo, mock payments only) &middot; <button type="button" class="linkbtn" data-reset-demo>Reset demo data</button></span>
         <div class="footer-pay"><span>GCash</span><span>Maya</span><span>Cash at meet-up</span></div>
       </div>
     </footer>
+    <button type="button" class="reset-fab" data-reset-presentation aria-label="Reset presentation to its initial state">${icon('reset', 18)}<span>Reset</span></button>
     <nav class="mobile-nav" aria-label="Primary">
       <a href="${page('index')}">${icon('home')}Home</a>
       <a href="${page('browse')}">${icon('search')}Browse</a>
@@ -243,6 +245,13 @@
     });
     const lo = hdr.querySelector('[data-logout]');
     if (lo) lo.addEventListener('click', () => { MF.auth.logout(); location.href = page('index'); });
+    // Fixed bottom-right: wipes all demo data, the login, the cart and the saved theme, then returns to the home page.
+    document.querySelector('[data-reset-presentation]').addEventListener('click', () => {
+      MF.db.reset();
+      MF.storage.remove('theme');
+      document.documentElement.removeAttribute('data-theme');
+      location.href = page('index');
+    });
     document.querySelector('[data-reset-demo]').addEventListener('click', () => {
       if (!document.querySelector('[data-reset-ask]')) {
         const b = document.querySelector('[data-reset-demo]');

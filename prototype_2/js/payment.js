@@ -111,7 +111,7 @@
     need(['awaiting_payment', 'payment_rejected'].includes(o.status), 'This order is not waiting for a payment right now.');
     const settings = MF.db.settings();
     const prior = proofsOf(o.id);
-    need(prior.length < settings.max_proof_attempts, 'No attempts are left. Please contact ManilaFinds support.');
+    need(prior.length < settings.max_proof_attempts, 'No attempts are left. Please contact Muralla Tech support.');
     need(['gcash', 'maya'].includes(f.method), 'Choose GCash or Maya.');
     need(String(f.sender_name || '').trim().length >= 2, 'Enter the name on the account you paid from.');
     const ref = normRef(f.reference);

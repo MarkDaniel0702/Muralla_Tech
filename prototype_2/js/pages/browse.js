@@ -70,7 +70,7 @@ MF.ui.boot(function () {
     const seller = f.seller && MF.auth.find(f.seller);
     const heading = seller ? 'Listings by ' + MF.ui.fullName(seller) : f.q ? 'Search: ' + f.q : 'All Listings';
     app.querySelector('[data-heading]').textContent = heading;
-    document.title = heading + ' - ManilaFinds';
+    document.title = heading + ' - Muralla Tech';
     app.querySelector('[data-search] input').value = f.q;
     const hs = document.querySelector('[data-header-search]');
     if (hs && !hs.matches(':focus')) hs.value = f.q;
