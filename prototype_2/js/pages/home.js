@@ -13,8 +13,8 @@ MF.ui.boot(function () {
     <div class="wrap hero-inner">
       <div>
         <p class="eyebrow">Tech &amp; electronics marketplace</p>
-        <h1 id="hero-title">Premium tech. <span class="g">Preloved</span> prices.</h1>
-        <p class="lead">Discover preloved gadgets, surplus chargers and certified-fresh electronics from sellers all over Metro Manila.</p>
+        <h1 id="hero-title">Premium tech. <span class="g">Fair</span> prices.</h1>
+        <p class="lead">Shop the latest cameras, gaming gear, audio and PC parts, plus preloved gadgets, from trusted sellers across Metro Manila.</p>
         <form class="searchbar" role="search" data-hero-search>
           <input type="search" name="q" aria-label="Search electronics" placeholder="What are you looking for?">
           <button type="submit" class="btn btn--primary" style="padding:.6rem 1.1rem">Search</button>

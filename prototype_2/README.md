@@ -66,7 +66,7 @@ js/cart.js                 cart (ids and quantities; prices always read from the
 js/payment.js              orders and the payment module (all rules live here)
 js/card.js, js/orderui.js  listing card with hover slideshow; order pieces shared by Orders and Admin
 js/pages/*.js              one script per page
-data/*.json                listings (25 electronics), users, settings (fee rate, delivery fee, platform accounts)
+data/*.json                listings (30 electronics), users, settings (fee rate, delivery fee, platform accounts)
 data/seed.js               generated copy of the JSON for double-click use (see below)
 assets/                    logos and the 104 listing photos
 tools/                     build_seed.py, test_payment.js, e2e_test.py

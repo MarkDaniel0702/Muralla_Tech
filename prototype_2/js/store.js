@@ -4,7 +4,7 @@
 (function () {
   const MF = (window.MF = window.MF || {});
   const PREFIX = 'mf2_';
-  const SEED_VERSION = '1';
+  const SEED_VERSION = '2';   // bumped when data/*.json changes so existing browsers pick up the new listings
   const mem = {}; // used when localStorage is blocked (private mode): works for this tab only
 
   const read = (key, fallback) => {

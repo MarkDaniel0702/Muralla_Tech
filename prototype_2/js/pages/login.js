@@ -21,8 +21,8 @@ MF.ui.boot(function () {
     app.innerHTML = h`
     <div class="auth-wrap"><div class="auth-card">
       <div class="auth-brand"><div class="sunburst"></div>
-        <img src="${MF.root}assets/icon.png" alt="" width="48" height="48">
-        <h2>Palengke meets premium.</h2>
+        <img src="${MF.root}assets/icon.png" alt="" width="42" height="48" style="background:#fff;border-radius:8px;padding:2px 3px">
+        <h2>Trusted tech, fair prices.</h2>
         <ul>
           <li>${icon('check', 16)} Pay by GCash or Maya, protected until you receive the item</li>
           <li>${icon('check', 16)} Prefer cash? Meet up and pay the seller directly</li>

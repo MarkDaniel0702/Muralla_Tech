@@ -82,15 +82,15 @@ with sync_playwright() as p:
     pg.on("pageerror", lambda e: errors.append(f"pageerror: {e}"))
     pg.on("dialog", lambda d: (errors.append("unexpected browser dialog: " + d.message), d.dismiss()))
 
-    # ---------- data scope: Electronics only, 25 items from the data ----------
+    # ---------- data scope: Electronics only, 30 items from the data ----------
     pg.goto(BASE)
-    expect(pg.locator("[data-stat=total]")).to_have_text("25")
+    expect(pg.locator("[data-stat=total]")).to_have_text("30")
     expect(pg.locator(".cat-tile")).to_have_count(0)
     assert "Fashion" not in pg.inner_text("body") and "Furniture" not in pg.inner_text("body")
     pg.goto(BASE + "pages/browse.html")
     expect(pg.locator(".lcard")).to_have_count(12)
-    expect(pg.locator("[data-count]")).to_contain_text("25 results")
-    ok("home and browse show only the 25 Electronics listings")
+    expect(pg.locator("[data-count]")).to_contain_text("30 results")
+    ok("home and browse show only the 30 Electronics listings")
 
     # ---------- browse: search, sort, filters ----------
     pg.goto(BASE + "pages/browse.html?q=airpods")
@@ -100,11 +100,11 @@ with sync_playwright() as p:
     assert prices == sorted(prices), prices
     pg.goto(BASE + "pages/browse.html")
     pg.check("input[name=type][value=surplus]")
-    expect(pg.locator("[data-count]")).to_contain_text("3 results")
+    expect(pg.locator("[data-count]")).to_contain_text("7 results")
     pg.check("input[name=cond][value='Well Loved']")
     expect(pg.get_by_text("No results found")).to_be_visible()
     pg.click("[data-act=clear]")
-    expect(pg.locator("[data-count]")).to_contain_text("25 results")
+    expect(pg.locator("[data-count]")).to_contain_text("30 results")
     pg.fill("input[name=brand]", "samsung"); pg.press("input[name=brand]", "Enter")
     expect(pg.locator("[data-count]")).to_contain_text("3 results")
     pg.goto(BASE + "pages/browse.html?min=10000&max=20000")
@@ -386,7 +386,7 @@ with sync_playwright() as p:
     expect(pg.get_by_role("alert")).to_contain_text("at most 5 photos")
     pg.click("button[type=submit]")
     expect(pg.get_by_role("heading", name="Submitted for review")).to_be_visible()
-    pg.goto(BASE + "pages/browse.html?q=anker")
+    pg.goto(BASE + "pages/browse.html?q=20,000mAh")
     expect(pg.get_by_text("No results found")).to_be_visible()           # not live yet
     logout(pg)
     login(pg, "admin")
@@ -402,7 +402,7 @@ with sync_playwright() as p:
     expect(r).to_contain_text("Please add a photo of the ports")
     r.locator("[data-act=approve-listing]").click()
     expect(pg.get_by_role("status").first).to_contain_text("Published")
-    pg.goto(BASE + "pages/browse.html?q=anker")
+    pg.goto(BASE + "pages/browse.html?q=20,000mAh")
     expect(pg.locator(".lcard")).to_have_count(1)
     # admin lists directly: "Published"
     pg.goto(BASE + "pages/sell.html")
@@ -490,7 +490,7 @@ with sync_playwright() as p:
     fp = f.new_page()
     fp.on("pageerror", lambda e: errors.append(f"file:// pageerror: {e}"))
     fp.goto((ROOT / "index.html").as_uri())
-    expect(fp.locator("[data-stat=total]")).to_have_text("25")
+    expect(fp.locator("[data-stat=total]")).to_have_text("30")
     fp.goto((ROOT / "pages" / "browse.html").as_uri())
     expect(fp.locator(".lcard")).to_have_count(12)
     f.close()

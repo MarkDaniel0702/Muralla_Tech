@@ -1326,5 +1326,131 @@
     "source_url": "https://commons.wikimedia.org/wiki/File:Playstation_5_DualSense_controller_in_Midnight_Black,_2026-02-07_(detail_of_joysticks).jpg"
    }
   ]
- }
+ },
+  {
+    "id": "e26",
+    "title": "Sony Alpha 7 IV Mirrorless Camera with FE 24-70mm f/2.8 GM Lens & SanDisk 128GB SD Card",
+    "category": "Electronics",
+    "brand": "Sony",
+    "condition": "Brand New",
+    "price": 175000,
+    "size": "Approx. 131.3 x 96.4 x 79.8 mm (body only)",
+    "material_color": "Magnesium alloy body, black",
+    "location": "Makati",
+    "description": "Hybrid full-frame camera built for high-end photo and video, bundled with the FE 24-70mm f/2.8 G Master zoom and a SanDisk Extreme PRO 128GB card. 33 MP back-illuminated sensor, BIONZ XR processor, 759-point AI autofocus with real-time Eye AF, 5-axis stabilization (up to 5.5 stops), 4K 60p video with 10-bit 4:2:2 and S-Cinetone, a vari-angle touchscreen and dual card slots. Makati meet-up or insured courier delivery. Demo listing: the photos show this model, not this exact unit.",
+    "stock": 1,
+    "type": "surplus",
+    "can_ship": true,
+    "can_meetup": true,
+    "seller_id": "u_seller2",
+    "status": "approved",
+    "admin_note": "",
+    "created_at": "2026-10-21T08:00:00Z",
+    "photos": [
+      "assets/photos/sony-a7iv-kit-1.jpg",
+      "assets/photos/sony-a7iv-kit-2.jpg",
+      "assets/photos/sony-a7iv-kit-3.jpg"
+    ]
+  },
+  {
+    "id": "e27",
+    "title": "Analogue Pocket Handheld Gaming System",
+    "category": "Electronics",
+    "brand": "Analogue",
+    "condition": "Brand New",
+    "price": 14500,
+    "size": "Approx. 148 x 80 x 15 mm",
+    "material_color": "Aluminum and glass, black",
+    "location": "Quezon City",
+    "description": "FPGA-based handheld that plays original Game Boy, Game Boy Color and Game Boy Advance cartridges in hardware, with no software emulation. 3.5-inch 1600 x 1440 LCD (615 PPI, 90 Hz), 4,300 mAh battery for 6 to 10 hours, stereo speakers, the built-in Nanoloop music maker, a microSD slot and USB-C. Works with the Analogue Dock for HDTV output. Quezon City meet-up or courier delivery. Demo listing: the photos show this model, not this exact unit.",
+    "stock": 2,
+    "type": "surplus",
+    "can_ship": true,
+    "can_meetup": true,
+    "seller_id": "u_seller2",
+    "status": "approved",
+    "admin_note": "",
+    "created_at": "2026-10-21T07:00:00Z",
+    "photos": [
+      "assets/photos/analogue-pocket-1.jpg",
+      "assets/photos/analogue-pocket-2.jpg",
+      "assets/photos/analogue-pocket-3.jpg"
+    ]
+  },
+  {
+    "id": "e28",
+    "title": "Anker Soundcore AeroClip 2 Open-Ear Clip-On Earbuds",
+    "category": "Electronics",
+    "brand": "Anker",
+    "condition": "Brand New",
+    "price": 7500,
+    "size": "6.2 g per earbud, open-ear C-bridge clip design",
+    "material_color": "Matte plastic, Midnight Black / Pearl White / Plum Maroon",
+    "location": "Taguig",
+    "description": "Open-ear clip-on earbuds that stay light and comfortable all day. 12 mm drivers with LDAC Hi-Res Audio and directional sound, a 4-mic AI call system with Whisper Mode, Bluetooth 6.0 with multipoint and IP57 sweat and dust resistance. Up to 8 hours per charge, 32 hours with the case, and 10 minutes of charging gives 4 hours of music. Please tell us which color you want. Taguig meet-up or courier delivery. Demo listing: the photos show this model, not this exact unit.",
+    "stock": 3,
+    "type": "surplus",
+    "can_ship": true,
+    "can_meetup": true,
+    "seller_id": "u_seller1",
+    "status": "approved",
+    "admin_note": "",
+    "created_at": "2026-10-21T06:00:00Z",
+    "photos": [
+      "assets/photos/soundcore-aeroclip-2-1.jpg",
+      "assets/photos/soundcore-aeroclip-2-2.jpg",
+      "assets/photos/soundcore-aeroclip-2-3.jpg"
+    ]
+  },
+  {
+    "id": "e29",
+    "title": "Sony PlayStation Portable PSP-1000 Series (refurbished)",
+    "category": "Electronics",
+    "brand": "Sony",
+    "condition": "Lightly Used",
+    "price": 5500,
+    "size": "Approx. 170 x 74 x 23 mm",
+    "material_color": "Glossy plastic, Piano Black",
+    "location": "Pasig",
+    "description": "The original PSP: a 4.3-inch 480 x 272 widescreen display, analog nub, stereo speakers, Wi-Fi and a UMD drive for games and movies, with Memory Stick Duo expansion. Refurbished collector unit with a working 1800 mAh battery (about 3 to 6 hours of play). Charges by USB or the DC adapter. A fun piece for retro handheld collectors. Pasig meet-up or courier delivery. Demo listing: the photos show this model, not this exact unit.",
+    "stock": 1,
+    "type": "preloved",
+    "can_ship": true,
+    "can_meetup": true,
+    "seller_id": "u_seller2",
+    "status": "approved",
+    "admin_note": "",
+    "created_at": "2026-10-21T05:00:00Z",
+    "photos": [
+      "assets/photos/psp-1000-1.jpg",
+      "assets/photos/psp-1000-2.jpg",
+      "assets/photos/psp-1000-3.jpg"
+    ]
+  },
+  {
+    "id": "e30",
+    "title": "NVIDIA GeForce RTX 5090 Founders Edition 32GB GDDR7",
+    "category": "Electronics",
+    "brand": "NVIDIA",
+    "condition": "Brand New",
+    "price": 125000,
+    "size": "Approx. 304 x 137 mm, dual-slot",
+    "material_color": "Black and silver metal shroud",
+    "location": "Makati",
+    "description": "Flagship Blackwell graphics card with 32 GB of GDDR7 on a 512-bit bus, 21,760 CUDA cores, 5th-gen Tensor cores and 4th-gen RT cores with DLSS 4. PCIe 5.0 x16, three DisplayPort 2.1a and one HDMI 2.1a, vapor-chamber flow-through cooling. 600 W TDP over a single 16-pin 12V-2x6 cable: a 1000 to 1200 W ATX 3.1 power supply is recommended. Makati meet-up or insured courier delivery. Demo listing: the photos show this model, not this exact unit.",
+    "stock": 1,
+    "type": "surplus",
+    "can_ship": true,
+    "can_meetup": true,
+    "seller_id": "u_seller1",
+    "status": "approved",
+    "admin_note": "",
+    "created_at": "2026-10-21T04:00:00Z",
+    "photos": [
+      "assets/photos/rtx-5090-fe-1.jpg",
+      "assets/photos/rtx-5090-fe-2.jpg",
+      "assets/photos/rtx-5090-fe-3.jpg"
+    ]
+  }
+
 ]
