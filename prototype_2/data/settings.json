@@ -1,0 +1,9 @@
+{
+  "fee_rate": 0.05,
+  "delivery_fee": 80,
+  "max_proof_attempts": 3,
+  "platform_accounts": {
+    "gcash": { "account_name": "ManilaFinds Demo", "account_number": "09170000001", "qr": null, "active": true },
+    "maya":  { "account_name": "ManilaFinds Demo", "account_number": "09180000002", "qr": null, "active": true }
+  }
+}

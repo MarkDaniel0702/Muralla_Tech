@@ -1,0 +1,7 @@
+[
+  { "id": "u_buyer",   "role": "buyer",  "email": "buyer@manilafinds.test",   "password": "buyer123",  "first_name": "Bea",  "last_name": "Santos",     "created_at": "2026-09-01T00:00:00Z", "payout_account": null },
+  { "id": "u_seller1", "role": "seller", "email": "seller@manilafinds.test",  "password": "seller123", "first_name": "Rico", "last_name": "Dela Cruz",  "created_at": "2026-09-02T00:00:00Z",
+    "payout_account": { "method": "gcash", "account_name": "Rico Dela Cruz", "account_number": "09171112222" } },
+  { "id": "u_seller2", "role": "seller", "email": "seller2@manilafinds.test", "password": "seller123", "first_name": "Lena", "last_name": "Reyes",      "created_at": "2026-09-03T00:00:00Z", "payout_account": null },
+  { "id": "u_admin",   "role": "admin",  "email": "admin@manilafinds.test",   "password": "admin123",  "first_name": "Ana",  "last_name": "Villanueva", "created_at": "2026-08-30T00:00:00Z", "payout_account": null }
+]
