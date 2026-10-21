@@ -1,4 +1,4 @@
-/* Home: hero with search + carousel of the newest listings, stats, Newest devices (tabbed), Shop by Category (Electronics only), How it works, sell CTA. */
+/* Home: hero with search + carousel of the newest listings, stats, Newest devices (tabbed), How it works, sell CTA. */
 MF.ui.boot(function () {
   const { h, icon, peso, url, page } = MF.ui;
   const approved = MF.listings.approved();
@@ -47,18 +47,6 @@ MF.ui.boot(function () {
       ${TABS.map(([v, label], i) => h`<button type="button" class="pill-tab" data-tab="${v}" aria-pressed="${String(i === 0)}">${label}</button>`)}
     </div>
     <div class="scroller" data-newest></div>
-  </section>
-
-  <section class="wrap section" aria-labelledby="cat-title">
-    <div class="section-head"><h2 id="cat-title">Shop by Category</h2>
-      <a href="${page('browse')}" class="link">See all ${icon('arrow', 16)}</a></div>
-    <div class="cat-grid" style="grid-template-columns:minmax(0,320px)">
-      <a class="cat-tile" href="${page('browse')}">
-        <div class="ico">${icon('chip', 24)}</div>
-        <b>Electronics</b>
-        <span>${approved.length.toLocaleString()} ${approved.length === 1 ? 'item' : 'items'}</span>
-      </a>
-    </div>
   </section>
 
   <section class="wrap section" id="how">

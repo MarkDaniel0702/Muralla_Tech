@@ -24,7 +24,7 @@ The login page can fill these in with one click. Sign Up creates new buyer or se
 
 ## Pages
 
-`index.html` Home (hero search, newest-listings carousel, Shop by Category) · `pages/browse.html` search, sort, filters (type, price, condition, brand, size, material/color) · `listing.html` details · `sell.html` · `cart.html` · `checkout.html` · `pay.html` (send proof of payment) · `orders.html` (My Orders, Incoming Orders, My Listings, Saved, Notifications, Settings) · `login.html` (log in + sign up) · `admin.html`.
+`index.html` Home (hero search, newest-listings carousel, tabbed Newest devices, How it works) · `pages/browse.html` search, sort, filters (type, price, condition, brand, size, material/color) · `listing.html` details · `sell.html` · `cart.html` · `checkout.html` · `pay.html` (send proof of payment) · `orders.html` (My Orders, Incoming Orders, My Listings, Saved, Notifications, Settings) · `login.html` (log in + sign up) · `admin.html`.
 
 ## How each flow works
 

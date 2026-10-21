@@ -85,7 +85,7 @@ with sync_playwright() as p:
     # ---------- data scope: Electronics only, 25 items from the data ----------
     pg.goto(BASE)
     expect(pg.locator("[data-stat=total]")).to_have_text("25")
-    expect(pg.locator(".cat-tile")).to_have_count(1)
+    expect(pg.locator(".cat-tile")).to_have_count(0)
     assert "Fashion" not in pg.inner_text("body") and "Furniture" not in pg.inner_text("body")
     pg.goto(BASE + "pages/browse.html")
     expect(pg.locator(".lcard")).to_have_count(12)
